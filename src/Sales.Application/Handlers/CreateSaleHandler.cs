@@ -25,7 +25,8 @@ namespace Sales.Application.Commands
             var sale = _mapper.Map<Sale>(saleDto);
 
             sale.Id = Guid.NewGuid();
-            sale.Items = new();
+            sale.Items.Clear();
+
             saleDto.Items.ForEach(itemDto =>
             {
                 var item = _mapper.Map<SaleItem>(itemDto);

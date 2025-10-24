@@ -33,5 +33,13 @@ namespace Sales.Api.Controllers
         public async Task<IActionResult> GetAll()
             => Ok((await _repo.GetAllAsync()).Select(_mapper.Map<SaleDto>));
 
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var sale = await _repo.GetByIdAsync(id);
+            if (sale == null) return NotFound();
+            return Ok(_mapper.Map<SaleDto>(sale));
+        }
+
     }
 }

@@ -12,6 +12,8 @@ namespace Sales.Application.Profiles
         {
             CreateMap<Sale, SaleDto>().ReverseMap();
             CreateMap<SaleItem, SaleItemDto>().ReverseMap();
+            CreateMap<Sale, SaleUpdateDto>().ReverseMap();
+            CreateMap<SaleItem, SaleItemUpdateDto>().ReverseMap();
         }
     }
 }

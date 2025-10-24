@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Sales.Application.Commands;
 using Sales.Application.Dto;
 using Sales.Application.Interfaces;
+using Sales.Domain.Entities;
 
 namespace Sales.Api.Controllers
 {
@@ -46,6 +47,15 @@ namespace Sales.Api.Controllers
         {
             await _repo.DeleteAsync(id);
             await _repo.SaveChangesAsync();
+            return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSale(Guid id, [FromBody] SaleUpdateDto saleDto)
+        {
+            var sale = _mapper.Map<Sale>(saleDto);
+            sale.Id = id;
+            await _mediator.Send(new UpdateSaleCommand(sale));
             return NoContent();
         }
 

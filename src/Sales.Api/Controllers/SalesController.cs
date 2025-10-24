@@ -41,5 +41,13 @@ namespace Sales.Api.Controllers
             return Ok(_mapper.Map<SaleDto>(sale));
         }
 
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(Guid id)
+        {
+            await _repo.DeleteAsync(id);
+            await _repo.SaveChangesAsync();
+            return NoContent();
+        }
+
     }
 }

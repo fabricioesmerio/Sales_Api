@@ -59,5 +59,9 @@ namespace Sales.Api.Controllers
             return NoContent();
         }
 
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> CancelSale(Guid id)
+        => Ok(await _mediator.Send(new CancelSaleCommand(id)));
+
     }
 }

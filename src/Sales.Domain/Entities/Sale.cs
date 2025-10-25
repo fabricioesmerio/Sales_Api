@@ -60,7 +60,7 @@ namespace Sales.Domain.Entities
 
         public void Cancel() => IsCancelled = true;
 
-        private void ApplyDiscount(SaleItem item)
+        private static void ApplyDiscount(SaleItem item)
         {
             if (item.Quantity > 20)
                 throw new InvalidOperationException("Cannot sell more than 20 identical items.");
